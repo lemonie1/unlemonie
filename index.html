@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- This is the title of the webpage (shows up on the browser tab) -->
+    <title>unlemonie's hut</title> 
+
+    <!-- external css link pls remember -->
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <!-- gansh favicons -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+    <style>
+        /* BUTTON HOVER EFFECTS */
+        button {
+            transition: transform 0.2s ease, scale 0.2s ease;
+        }
+
+        button:hover {
+            transform: rotate(-5deg) scale(1.1); /* button tilts when ganesh is hovered on */
+        }
+    </style>
+</head>
+
+<body>
+
+    
+        <img src="/images/oceanbomb.png" class="hover-effect" alt="snorlackz">
+        <img src="/images/oceanbomb2.png" class="left-hover" alt="bolbasourrrr">
+    
+    
+
+    <!-- MAIN HEADER -->
+    <h1>unlemonie</h1>
+
+    <!-- MOVING TEXT (SCROLLING MARQUEE) -->
+    <p>
+        <marquee behavior="scroll" direction="left" scrollamount="10"> 
+            THIS IS A MOVING HORIZONTAL LINE THING!
+        </marquee>
+    </p>
+
+    <!-- UNDER CONSTRUCTION MESSAGE -->
+    <div class="container">
+        <h2>under construction!</h2>
+    </div>
+
+    <!-- BACKGROUND MUSIC (PLAYS IN A LOOP) -->
+    <audio id="bg-music" loop>
+        <source src="https://files.catbox.moe/rrslda.mp3" type="audio/mpeg">
+        <!-- If the browser does not support audio -->
+        Your browser does not support the audio element.
+    </audio>
+
+   
+    <!-- MUSIC CONTROL BUTTON -->
+    <button id="music-toggle">video game lobby - nicopatty x dashie!</button>
+
+    <script>
+        // GET THE AUDIO ELEMENTS
+        var music = document.getElementById("bg-music");
+        var musicToggle = document.getElementById("music-toggle");
+        var hoverSound = document.getElementById("hover-sound");
+
+        // FUNCTION TO PLAY MUSIC (FIXES AUTOPLAY ISSUES)
+        function playMusic() {
+            music.volume = 0.2; // SET MUSIC VOLUME TO 20%
+            var playPromise = music.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    musicToggle.textContent = "hol up. "; // CHANGE BUTTON TEXT
+                }).catch(() => {
+                    console.log("Autoplay blocked. Waiting for user interaction.");
+                });
+            }
+        }
+
+        // PLAY MUSIC WHEN USER CLICKS OR PRESSES A KEY
+        document.addEventListener("click", playMusic, { once: true });
+        document.addEventListener("keydown", playMusic, { once: true });
+
+        // TOGGLE MUSIC ON BUTTON CLICK
+        musicToggle.addEventListener("click", function () {
+            if (music.paused) {
+                music.play();
+                musicToggle.textContent = "stop it pls "; // UPDATE BUTTON TEXT
+            } else {
+                music.pause();
+                musicToggle.textContent = "play it back!"; // UPDATE BUTTON TEXT
+            }
+        });
+
+        // PLAY HOVER SOUND WHEN BUTTON IS HOVERED
+        document.querySelectorAll("button").forEach(button => {
+            button.addEventListener("mouseenter", () => {
+                hoverSound.currentTime = 0; // RESET SOUND TO START
+                hoverSound.play();
+            });
+        });
+    </script>
+
+    <!-- BUTTON THAT LINKS TO ANOTHER PAGE -->
+    <button onclick="location.href='profile.html'"> > logs </button>
+    <button onclick="location.href='about.html'"> > about </button>
+
+    <!-- TOGGLE PARTICLE EFFECT BUTTON -->
+    <button id="toggleParticles">Toggle Particles</button>
+
+    <!-- PARTICLE CANVAS (FOR ANIMATION) -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- LINK TO EXTERNAL JAVASCRIPT FILE -->
+    <script src="script.js"></script>
+
+
+
+</body>
+</html>

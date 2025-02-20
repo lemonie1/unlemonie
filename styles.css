@@ -1,0 +1,148 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: russiangothic, ms ui gothic, nec_apc3, Tahoma;
+    text-shadow: 1px 1px 0 #0f380f;
+    image-rendering: pixelated;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Moving scanlines effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0px,
+        rgba(0, 0, 0, 0.3) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.5;
+    animation: scanlines 2s linear infinite;
+}
+
+@keyframes scanlines {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(4px);
+    }
+}
+
+/* Add border around headers and paragraphs */
+ p {
+    border: 2px solid #0f380f;
+    padding: 5px;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Retro button styles */
+button {
+    background-color: #8bac0f;
+    border: 2px solid #0f380f;
+    color: #0f380f;
+    font-size: 14px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #0f380f;
+}
+
+button:hover {
+    background-color: #a8d030;
+}
+
+.profile-pic {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border: 3px solid white; /* Border around the image */
+    display: block;
+    margin: 10px auto; /* Center the image */
+}
+
+#toggleParticles {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #8bac0f;
+    border: 2px solid #0f380f;
+    color: #0f380f;
+    font-size: 14px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #0f380f;
+}
+
+/* Make canvas cover the entire background */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Push behind content */
+    pointer-events: none; /* Ignore mouse interactions */
+}
+
+
+.scroll-box {
+    width: 80%; /* Adjust width */
+    max-height: 300px; /* Limits height to make it scrollable */
+    overflow-y: auto; /* Enables vertical scrolling */
+    margin: 20px auto; /* Centers it */
+    padding: 10px;
+    border: 1px solid white; /* Optional: Gives it a nice border */
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    font-family: "Courier New", monospace; /* Matches the retro style */
+    color: white;
+}
+
+/* Make header stick to the top */
+h1 {
+    position: absolute;
+    top: 0;
+    
+}
+
+.hover-effect {
+    position: absolute;
+    right: 50px; /* Adjust as needed */
+    transform: rotate(10deg) scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 500px; /* Adjust size */
+}
+
+.hover-effect:hover {
+    transform: rotate(0deg) scale(1.2);
+}
+
+.left-hover {
+    position: absolute;
+    left: 50px; /* Adjust as needed */
+    transform: rotate(-10deg) scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 500px; /* Adjust size */
+}
+
+.left-hover:hover {
+    transform: rotate(0deg) scale(1.2);
+}
+
+
+
